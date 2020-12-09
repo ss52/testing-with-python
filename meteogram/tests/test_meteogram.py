@@ -22,10 +22,17 @@ def test_degF_to_degC_at_freezing():
 
     # Cleanup - none necessary
 
+
 #
 # Instructor led introductory examples
 #
+def test_title_case():
+    in_str = "test string"
+    des = "Test String"
 
+    res = in_str.title()
+
+    assert res == des
 #
 # Instructor led examples of numerical comparison
 #
