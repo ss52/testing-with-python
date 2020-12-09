@@ -30,6 +30,7 @@ def test_degF_to_degC_at_freezing():
 # Instructor led examples of numerical comparison
 #
 
+
 #
 # Exercise 1
 #
