@@ -33,7 +33,7 @@ def current_utc_time():
 
     Returns
     -------
-    datetime.dateimte: current UTC date and time
+    datetime.datetime: current UTC date and time
 
     """
     return datetime.datetime.utcnow()
@@ -83,7 +83,7 @@ def exner_function(pressure, reference_pressure=1000):
     The value of the Exner function at the given pressure.
 
     """
-    return (pressure / reference_pressure)**0.28562982892500527
+    return (pressure / reference_pressure) ** 0.28562982892500527
 
 
 def build_asos_request_url(station, start_date, end_date):
@@ -96,7 +96,7 @@ def build_asos_request_url(station, start_date, end_date):
         Station identifier
     start_date: datetime.datetime
         Starting time of data to be obtained
-    end_data: datetime.datetime
+    end_date: datetime.datetime
         Ending time of data to be obtained
 
     Returns
