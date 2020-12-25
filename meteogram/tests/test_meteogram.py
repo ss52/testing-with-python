@@ -1,6 +1,7 @@
 """Test use of the meteogram module."""
 
 from meteogram import meteogram
+import datetime
 
 
 #
@@ -49,7 +50,6 @@ def test_build_asos_request_url_single_digit_datetimes():
     """
     Test building URL with single digit month and day.ё
     """
-    import datetime
 
     station = "FSD"
     start_date = datetime.datetime(2019, 1, 1, 1)
@@ -70,7 +70,6 @@ def test_build_asos_request_url_double_digit_datetimes():
     """
     Test building URL with double digit month and day.
     """
-    import datetime
 
     station = "FSD"
     start_date = datetime.datetime(2019, 11, 11, 16)
