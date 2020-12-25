@@ -33,9 +33,13 @@ def test_title_case():
     res = in_str.title()
 
     assert res == des
+
+
 #
 # Instructor led examples of numerical comparison
 #
+def test_number():
+    pass
 
 
 #
@@ -43,16 +47,45 @@ def test_title_case():
 #
 def test_build_asos_request_url_single_digit_datetimes():
     """
-    Test building URL with single digit month and day.
+    Test building URL with single digit month and day.ё
     """
-    pass
+    import datetime
+
+    station = "FSD"
+    start_date = datetime.datetime(2019, 1, 1, 1)
+    end_date = datetime.datetime(2019, 1, 5, 1)
+
+    des = (
+        "https://mesonet.agron.iastate.edu/request/asos/1min_dl.php?station%5B%5D=FSD&tz=UTC&year1=2019&"
+        "month1=01&day1=01&hour1=01&minute1=00&year2=2019&month2=01&day2=05&hour2=01&minute2=00&"
+        "vars%5B%5D=tmpf&vars%5B%5D=dwpf&vars%5B%5D=sknt&vars%5B%5D=drct&sample=1min&what=view&delim=comma&gis=yes"
+    )
+
+    res_srt = meteogram.build_asos_request_url(station, start_date, end_date)
+
+    assert res_srt == des
 
 
 def test_build_asos_request_url_double_digit_datetimes():
     """
     Test building URL with double digit month and day.
     """
-    pass
+    import datetime
+
+    station = "FSD"
+    start_date = datetime.datetime(2019, 11, 11, 16)
+    end_date = datetime.datetime(2019, 11, 25, 15)
+
+    des = (
+        "https://mesonet.agron.iastate.edu/request/asos/1min_dl.php?station%5B%5D=FSD&tz=UTC&year1=2019"
+        "&month1=11&day1=11&hour1=16&minute1=00&year2=2019&month2=11&day2=25&hour2=15&minute2=00&"
+        "vars%5B%5D=tmpf&vars%5B%5D=dwpf&vars%5B%5D=sknt&vars%5B%5D=drct&sample=1min&what=view&delim=comma&gis=yes"
+    )
+
+    res_srt = meteogram.build_asos_request_url(station, start_date, end_date)
+
+    assert res_srt == des
+
 
 #
 # Exercise 1 - Stop Here
