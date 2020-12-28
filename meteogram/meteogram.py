@@ -86,6 +86,32 @@ def exner_function(pressure, reference_pressure=1000):
     return (pressure / reference_pressure) ** 0.28562982892500527
 
 
+def wind_components(speed, direction):
+    """
+    Calculate the U, V wind vector components from the speed and direction.
+
+    Parameters
+    ----------
+    speed : array_like
+        The wind speed (magnitude)
+    direction : array_like
+        The wind direction, specified as the direction from which the wind is
+        blowing (0-360 degrees), with 360 degrees being North.
+
+    Returns
+    -------
+    u, v : tuple of array_like
+        The wind components in the X (East-West) and Y (North-South)
+        directions, respectively.
+
+    """
+    teta = np.radians(direction)
+    u = -speed * np.sin(teta)
+    v = -speed * np.cos(teta)
+
+    return u, v
+
+
 def build_asos_request_url(station, start_date, end_date):
     """
     Create a URL to request ASOS data from the Iowa State archive.

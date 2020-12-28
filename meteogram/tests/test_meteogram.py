@@ -2,6 +2,8 @@
 
 from meteogram import meteogram
 import datetime
+import numpy as np
+from numpy.testing import assert_almost_equal, assert_array_almost_equal
 
 
 #
@@ -90,9 +92,72 @@ def test_build_asos_request_url_double_digit_datetimes():
 # Exercise 1 - Stop Here
 #
 
+def test_floating_numbers():
+    desired = 0.293
+
+    actual = 1 - 0.707
+
+    assert_almost_equal(actual, desired)
+
+
 #
 # Exercise 2 - Add calculation tests here
 #
+def test_wind_calculations_direction_zero():
+
+    speed = 1
+    direction = 0
+
+    u_real = 0
+    v_real = -1
+
+    u_des, v_des = meteogram.wind_components(speed, direction)
+
+    assert_almost_equal(u_real, u_des)
+    assert_almost_equal(v_real, v_des)
+
+
+def test_wind_calculations_direction_45():
+
+    speed = 1
+    direction = 45
+
+    u_real = -0.707
+    v_real = -0.707
+
+    u_des, v_des = meteogram.wind_components(speed, direction)
+
+    assert_almost_equal(u_real, u_des, decimal=3)
+    assert_almost_equal(v_real, v_des, decimal=3)
+
+
+def test_wind_calculations_zero_speed():
+
+    speed = 0
+    direction = 45
+
+    u_real = 0
+    v_real = 0
+
+    u_des, v_des = meteogram.wind_components(speed, direction)
+
+    assert_almost_equal(u_real, u_des)
+    assert_almost_equal(v_real, v_des)
+
+
+def test_wind_calculations_all():
+    speed = np.array([10, 10, 10, 0])
+    direction = np.array([0, 45, 360, 45])
+
+    # Exercise
+    u, v = meteogram.wind_components(speed, direction)
+
+    # Verify
+    true_u = np.array([0, -7.0710, 0, 0])
+    true_v = np.array([-10, -7.0710, -10, 0])
+    assert_array_almost_equal(u, true_u, 3)
+    assert_array_almost_equal(v, true_v, 3)
+
 
 #
 # Exercise 2 - Stop Here
